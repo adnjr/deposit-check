@@ -3,10 +3,16 @@ package models;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.asprise.ocr.Ocr;
+
 public class BankingSystem {
 	private Map<Integer, Account> accounts;
 	private Map<Integer, Customer> customers;
 	private Map<Integer, Transaction> transactions;
+	
+	public static void main(String[] args) {
+	    Ocr.setUp();
+	}
 
 	public BankingSystem() {
 		this.accounts = new HashMap<Integer, Account>();
