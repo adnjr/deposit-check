@@ -1,4 +1,6 @@
-package models;
+package readers;
+
+import transactions.Deposit;
 
 public class PdfDepositReader implements DepositReader {
     

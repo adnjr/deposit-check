@@ -5,6 +5,9 @@ import java.util.Map;
 
 import com.asprise.ocr.Ocr;
 
+import models.transactions.Deposit;
+import models.transactions.Transaction;
+
 public class BankingSystem {
 	private Map<Integer, Account> accounts;
 	private Map<Integer, Customer> customers;

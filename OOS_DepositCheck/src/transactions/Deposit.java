@@ -1,6 +1,8 @@
-package models;
+package transactions;
 
 import java.util.Date;
+
+import models.Check;
 
 public class Deposit extends Transaction {
     

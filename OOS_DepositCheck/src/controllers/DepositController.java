@@ -1,17 +1,29 @@
-package models;
+package controllers;
 
 import java.util.Date;
+import java.util.Map;
+
+import models.Account;
+import models.AuthorizationRules;
+import models.transactions.Deposit;
 
 public class DepositController {
 
-	private BankingSystem bankingSystem;
+//	private BankingSystem bankingSystem;
 	private AuthorizationRules authorizationRules;
 	private Account account;
 	
-	public DepositController(BankingSystem bankingSystem, AuthorizationRules authRules) {
-	    this.bankingSystem = bankingSystem;
+	public DepositController(Map<String, String> formInput, AuthorizationRules authRules) {
+//	    this.bankingSystem = bankingSystem;
 	    this.authorizationRules = authRules;
+	    
+	    
+	    processInput();
+	    accessAccount();
+	    
 	}
+	
+	
 	
 	public boolean accessAccount(int accountNumber, int customerID) {
 	    this.account = bankingSystem.getAccount(accountNumber);
