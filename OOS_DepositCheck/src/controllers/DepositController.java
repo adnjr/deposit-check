@@ -4,43 +4,49 @@ import java.util.Date;
 import java.util.Map;
 
 import accounts.Account;
+import accounts.AccountsManager;
+import customers.Member;
+import customers.MemberManager;
 import models.AuthorizationRules;
-import models.transactions.Deposit;
+import transactions.Deposit;
 
 public class DepositController {
 
 //	private BankingSystem bankingSystem;
 	private AuthorizationRules authorizationRules;
+	private MemberManager memMan;
+	private AccountsManager accMan;
 	private Account account;
 	
-	public DepositController(AuthorizationRules authRules) {
+	public DepositController(AuthorizationRules authRules, AccountsManager accMan, MemberManager memMan) {
 //	    this.bankingSystem = bankingSystem;
 	    this.authorizationRules = authRules;
-	    
+	    this.accMan = accMan;
+	    this.memMan = memMan;
 	    
 //	    processInput();
 //	    accessAccount();
 	    
-	}
+	}	
 
-	public boolean accessAccount(Map<String, String> formInput) {
-		String memberIdentification;
+	public boolean accessAccount(Map<String, String> formInput) {        
+		int memberID;
 		
-		memberIdentification = formInput.get("memberID");
-        if (memberIdentification.isEmpty())
-        	memberIdentification = formInput.get("memberFullName");
-        
-        
+		this.account = accMan.getAccountOf(Integer.parseInt(formInput.get("accountID")));
 		
-	    this.account = bankingSystem.getAccount(accountNumber);
-	    return this.account.isAccessAuthorized(customerID);
+        if (!formInput.get("memberID").isEmpty())
+        	memberID = Integer.parseInt(formInput.get("memberID"));
+        else
+        	memberID = memMan.getMemberIDOf(formInput.get("memberFullName"));
+		
+	    return this.account.isAccessAuthorized(memberID);
 	}
 	
-	public boolean authorizeDeposit() throws Exception {
-	    String acctType = this.account.getAccountType();
-	    String acctStatus = this.account.getStatus();
+	public boolean authorizeDeposit() {
 	    return this.authorizationRules.isTransactionAuthorized(
-	            acctType, acctStatus, Deposit.TRANSACTION_TYPE);
+	    		this.account.getAccountType(),
+	    		this.account.getStatus(),
+	            Deposit.TRANSACTION_TYPE);
 	}
 	
 	public boolean makeDeposit(int amount, Date date) throws Exception {

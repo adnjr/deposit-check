@@ -22,12 +22,12 @@ public class BankingSystemController {
     public BankingSystemController() {
         transLog = new TransactionLog();
         authRules = new AuthorizationRules();
-        depCon = new DepositController(authRules);
+        depCon = new DepositController(authRules, accMan, memMan);
     }
     
     public void readCheckDeposit(String inputType) {
     	Map<String, String> formInput;
-    	String memberIdentification;
+    	String memberIdentifier;
     	
         // TODO implement this
         
@@ -35,14 +35,32 @@ public class BankingSystemController {
         formInput = promptForInfo();
         
         // pass the information to the deposit controller
-        memberIdentification = formInput.get("memberID");
-        if (memberIdentification.isEmpty())
-        	memberIdentification = formInput.get("memberFullName");
+//        memberIdentifier = formInput.get("memberID");
+//        if (memberIdentifier.isEmpty())
+//        	memberIdentifier = formInput.get("memberFullName");
         
         
-        depCon.accessAccount(formInput);
+        if (depCon.accessAccount(formInput) == false)
+        	errExit("Account access denied: the specified member is not permitted to access this account.");
+        
+        if (depCon.authorizeDeposit() == false)
+        	errExit("Deposit denied: deposits are not permitted on accounts of this type and status");
+        
+        
+        
         
         throw new RuntimeException("Not yet implemented");
+    }
+    
+    private void errExit(String message) {
+    	Console console;
+    	
+    	if ( (console = System.console()) != null)
+			console.format("%s%n", message);
+    	else
+    		System.err.println(message);
+    	
+    	System.exit(1);
     }
     
  // uses inputType to distinguish between check image or pdf file (or future types)

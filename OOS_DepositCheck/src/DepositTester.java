@@ -87,7 +87,7 @@ public class DepositTester{
   // the formats below, just don't change the values).
   public static void fillProfilesAndAccounts(BankingSystemController c){
     String fName, mName, lName, fullName;
-    int memberID, accountID, routingNum;
+    int memberID, accountID, routingNum, ssn;
     double initBalance;
     
     //Member Profiles
@@ -95,19 +95,22 @@ public class DepositTester{
     mName = "Z";
     lName = "Smith";
     memberID = 123456;
-    c.addMember(fName, mName, lName, memberID);
+    ssn = 123456789;
+    c.addMember(ssn, fName, mName, lName, memberID);
     
     fName = "Roger";
     mName = "M";
     lName = "Doe";
     memberID = 658241;
-    c.addMember(fName, mName, lName, memberID);
+    ssn = 658241245;
+    c.addMember(ssn, fName, mName, lName, memberID);
     
     fName = "Ashley";
     mName = "Maureen";
     lName = "Williams";
     memberID = 987654;
-    c.addMember(fName, mName, lName, memberID);
+    ssn = 594204535;
+    c.addMember(ssn, fName, mName, lName, memberID);
     
     //Member Accounts
     accountID = 724301068;
