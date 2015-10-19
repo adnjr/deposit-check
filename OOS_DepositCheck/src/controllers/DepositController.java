@@ -5,28 +5,26 @@ import java.util.Map;
 
 import accounts.Account;
 import accounts.AccountsManager;
-import customers.Member;
 import customers.MemberManager;
 import models.AuthorizationRules;
+import readers.DepositReader;
+import readers.DepositReaderFactory;
 import transactions.Deposit;
+import transactions.TransactionLog;
 
 public class DepositController {
 
-//	private BankingSystem bankingSystem;
 	private AuthorizationRules authorizationRules;
+	private TransactionLog transLog;
 	private MemberManager memMan;
 	private AccountsManager accMan;
 	private Account account;
 	
-	public DepositController(AuthorizationRules authRules, AccountsManager accMan, MemberManager memMan) {
-//	    this.bankingSystem = bankingSystem;
+	public DepositController(AuthorizationRules authRules, AccountsManager accMan, MemberManager memMan, TransactionLog transLog) {
 	    this.authorizationRules = authRules;
 	    this.accMan = accMan;
 	    this.memMan = memMan;
-	    
-//	    processInput();
-//	    accessAccount();
-	    
+	    this.transLog = transLog;
 	}	
 
 	public boolean accessAccount(Map<String, String> formInput) {        
@@ -49,8 +47,18 @@ public class DepositController {
 	            Deposit.TRANSACTION_TYPE);
 	}
 	
-	public boolean makeDeposit(int amount, Date date) throws Exception {
-	    throw new Exception("DepositController.makeDeposit: method not yet implemented");
+	public boolean makeDeposit(Map<String, String> input) {
+		DepositReader reader;
+		Map<String, String> depInfo;
+		
+		input.put("previousBalance", String.valueOf(account.getBalance()));
+		
+		reader = DepositReaderFactory.getFactory().getDepositReader("text", input);
+		depInfo = reader.getDepositInfo();
+		
+		transLog.addTransaction("deposit", depInfo);
+		
+		return true;
 	}
 	
 }

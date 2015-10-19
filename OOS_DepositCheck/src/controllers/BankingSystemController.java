@@ -8,7 +8,7 @@ import accounts.AccountsManager;
 import customers.MemberManager;
 import models.AuthorizationRules;
 import models.BankingSystem;
-import models.TransactionLog;
+import transactions.TransactionLog;
 
 public class BankingSystemController {
     
@@ -22,23 +22,14 @@ public class BankingSystemController {
     public BankingSystemController() {
         transLog = new TransactionLog();
         authRules = new AuthorizationRules();
-        depCon = new DepositController(authRules, accMan, memMan);
+        transLog = new TransactionLog();
+        depCon = new DepositController(authRules, accMan, memMan, transLog);
     }
     
     public void readCheckDeposit(String inputType) {
     	Map<String, String> formInput;
-    	String memberIdentifier;
     	
-        // TODO implement this
-        
-        // prompt user and collect information
         formInput = promptForInfo();
-        
-        // pass the information to the deposit controller
-//        memberIdentifier = formInput.get("memberID");
-//        if (memberIdentifier.isEmpty())
-//        	memberIdentifier = formInput.get("memberFullName");
-        
         
         if (depCon.accessAccount(formInput) == false)
         	errExit("Account access denied: the specified member is not permitted to access this account.");
@@ -46,9 +37,15 @@ public class BankingSystemController {
         if (depCon.authorizeDeposit() == false)
         	errExit("Deposit denied: deposits are not permitted on accounts of this type and status");
         
+        if (depCon.makeDeposit(formInput) == false)
+        	errExit("Deposit failed: an unknown error occured");
         
         
-        
+    }
+    
+    // uses inputType to distinguish between check image or pdf file (or future types)
+    public void readCheckDeposit(String inputType, String fileName) {
+        // TODO implement this
         throw new RuntimeException("Not yet implemented");
     }
     
@@ -63,12 +60,6 @@ public class BankingSystemController {
     	System.exit(1);
     }
     
- // uses inputType to distinguish between check image or pdf file (or future types)
-    public void readCheckDeposit(String inputType, String fileName) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
-    }
-    
     private Map<String, String> promptForInfo() {
         Console console;
         Map<String, String> formInput;
@@ -76,23 +67,24 @@ public class BankingSystemController {
         String accountStr = "";
         String routingStr = "";
         String memberStr = "";
-        String balanceStr = "";
+        String amountStr = "";
         
         formInput = new HashMap<String, String>();
         System.out.println("Enter the following check information:");
         
         if ( (console = System.console()) == null)
             throw new RuntimeException("Console unavailable. Console input required.");
+        
         do {
             try {
                 accountStr = console.readLine("Account ID: ").trim();
                 routingStr = console.readLine(("Routing Number: ")).trim();
                 memberStr = console.readLine("Member ID: ").trim();
-                memberFullName = console.readLine("Member Full Name").trim();
-                balanceStr = console.readLine("Initial Balance: ").trim();
+                memberFullName = console.readLine("Full Name").trim();
+                amountStr = console.readLine("Deposit Amount: ").trim();
                 
             } catch (NumberFormatException e) {
-                System.out.println("You must enter the account ID, routing number, and either full name or ID of member");
+                System.out.println("You must enter a valid account ID, routing number, and either full name or ID of member");
                 continue;
             }
         } while(accountStr.isEmpty() || routingStr.isEmpty() || (memberFullName.isEmpty() && memberStr.isEmpty()));
@@ -101,7 +93,7 @@ public class BankingSystemController {
         formInput.put("routingNum", routingStr);
         formInput.put("memberID", memberStr);
         formInput.put("memberFullName", memberFullName);
-        formInput.put("initBalance", balanceStr);
+        formInput.put("amount", amountStr);
 
         return formInput;
     }
@@ -116,7 +108,8 @@ public class BankingSystemController {
     }
     
     public void addAccount(String accountType, int accountID, int routingNum, int initBalance, int memberID) {
-        accMan.addAccount(accountType, accountID, routingNum, initBalance, memberID);
+    	int balance = initBalance * 10;
+        accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
     public void addAccount(String accountType, int accountID, int routingNum, double initBalance, String fullName) {
@@ -125,7 +118,8 @@ public class BankingSystemController {
     }
     
     public void addAccount(String accountType, int accountID, int routingNum, int initBalance, String fullName) {
-        accMan.addAccount(accountType, accountID, routingNum, initBalance, fullName);
+    	int balance = initBalance * 10;
+        accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
     
     public void addAccount(String accountType, int accountID, int routingNum, String fullName) {

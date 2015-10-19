@@ -1,12 +1,13 @@
 package readers;
 
+import java.util.Map;
+
 public class PdfDepositReader implements DepositReader {
 
 	@Override
-	public void getDepositInfo(Integer accountID, Integer routingNum, Integer memberID, String memberFullName,
-			Integer initBalance) {
+	public Map<String, String> getDepositInfo() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

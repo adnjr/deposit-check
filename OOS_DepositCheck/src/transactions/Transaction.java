@@ -11,15 +11,17 @@ abstract public class Transaction {
     private Date date;
 
     public Transaction(int transactionID, int accountNumber, int previousBalance,
-                       int amount, Date date) {
+                       int amount) {
         this.transactionID = transactionID;
         this.accountNumber = accountNumber;
         this.previousBalance = previousBalance;
         this.amount = amount;
-        this.date = date;
+        this.date = new Date();
     }
     
     abstract public String getType();
+    
+    abstract public int getNewBalance();
 
     public int getTransactionID() {
         return transactionID;
@@ -31,10 +33,6 @@ abstract public class Transaction {
 
     public int getPreviousBalance() {
         return previousBalance;
-    }
-
-    public int getNewBalance() {
-        return previousBalance + amount;
     }
 
     public int getAmount() {
