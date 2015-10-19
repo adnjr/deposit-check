@@ -1,16 +1,11 @@
 package accounts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import customers.Member;
 
 abstract public class Account {
 
 	private int accountNumber;
-	private Map<Integer, Member> customers;
 	private List<Integer> memberIDs;
 	private int balance;
 	private String status;
@@ -18,14 +13,11 @@ abstract public class Account {
 	public Account(int accountNumber, int routingNum, int balance, int... memberIDs) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
-		this.customers = new HashMap<Integer, Member>();
+
 		this.memberIDs = new ArrayList<Integer>();
 		if (memberIDs != null && memberIDs.length > 0)
 			for (int id : memberIDs)
 				this.memberIDs.add(id);
-//		if (customers != null && customers.length > 0)
-//    		for (Member customer : customers)
-//    		    this.customers.put(customer.getMemberID(), customer);
 	}
 
 	abstract public String getAccountType();
@@ -38,12 +30,12 @@ abstract public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public Map<Integer, Member> getCustomers() {
-		return customers;
+	public List<Integer> getMembers() {
+		return memberIDs;
 	}
 
-	public void setCustomers(Map<Integer, Member> customers) {
-		this.customers = customers;
+	public void setMembers(List<Integer> memberIDs) {
+		this.memberIDs = memberIDs;
 	}
 
 	public int getBalance() {
@@ -62,17 +54,16 @@ abstract public class Account {
         this.status = status;
     }
 	
-	public boolean addCustomer(Member customer) {
-	    customers.put(customer.getMemberID(), customer);
-	    return true;
+	public void addMember(int memberID) {
+	    memberIDs.add(memberID);
 	}
 	
-	public boolean removeCustomer(Integer customerID) {
-	    return customers.remove(customerID) != null;
+	public void removeMember(Integer memberID) {
+	    memberIDs.remove(memberID);
 	}
 	
-	public boolean isAccessAuthorized(Integer customerID) {
-	    return customers.containsKey(customerID);
+	public boolean isAccessAuthorized(Integer memberID) {
+	    return memberIDs.contains(memberID);
 	}
 	
 }

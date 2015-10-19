@@ -92,36 +92,30 @@ public class BankingSystemController {
         throw new RuntimeException("Not yet implemented");
     }
     
-    public void addAccount(int accountID, int rountingNum, double initBalance, int memberID) {
-        // TODO implement this
-        int balance = (int)(initBalance * 10);
-        throw new RuntimeException("Not yet implemented");
+    public void addAccount(String accountType, int accountID, int routingNum, double initBalance, int memberID) {
+    	int balance = (int)(initBalance * 10);
+        accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
-    public void addAccount(int accountID, int rountingNum, int initBalance, int memberID) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
+    public void addAccount(String accountType, int accountID, int routingNum, int initBalance, int memberID) {
+        accMan.addAccount(accountType, accountID, routingNum, initBalance, memberID);
     }
     
-    public void addAccount(int accountID, int routingNum, double initBalance, String fullName) {
-        // TODO implement this
-        int balance = (int)(initBalance * 10);
-        throw new RuntimeException("Not yet implemented");
+    public void addAccount(String accountType, int accountID, int routingNum, double initBalance, String fullName) {
+    	int balance = (int)(initBalance * 10);
+        accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
     
-    public void addAccount(int accountID, int routingNum, int initBalance, String fullName) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
+    public void addAccount(String accountType, int accountID, int routingNum, int initBalance, String fullName) {
+        accMan.addAccount(accountType, accountID, routingNum, initBalance, fullName);
     }
     
-    public void addAccount(int accountID, int routingNum, String fullName) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
+    public void addAccount(String accountType, int accountID, int routingNum, String fullName) {
+        accMan.addAccount(accountType, accountID, routingNum, fullName);
     }
     
-    public void addAccount(int accountID, int routingNum, int memberID) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
+    public void addAccount(String accountType, int accountID, int routingNum, int memberID) {
+        accMan.addAccount(accountType, accountID, routingNum, memberID);
     }
     
     

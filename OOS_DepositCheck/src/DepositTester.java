@@ -114,29 +114,29 @@ public class DepositTester{
     routingNum = 122105278;
     memberID = 123456;
     initBalance = 8003.00;
-    c.addAccount(accountID, routingNum, initBalance, memberID);
+    c.addAccount("checking", accountID, routingNum, initBalance, memberID);
     
     accountID = 512463512;
-    c.addAccount(accountID, routingNum, memberID);
+    c.addAccount("checking", accountID, routingNum, memberID);
     
     accountID = 555555555;
     routingNum = 333388888;
     fullName = "Roger M Doe";
-    c.addAccount(accountID, routingNum, fullName);
+    c.addAccount("checking", accountID, routingNum, fullName);
     
     accountID = 886611554;
     routingNum = 324752184;
     initBalance = 600.00;
     memberID = 987654;
-    c.addAccount(accountID, routingNum, initBalance, memberID);
+    c.addAccount("checking", accountID, routingNum, initBalance, memberID);
     
     accountID = 449977123;
     initBalance = 30.00;
     fullName = "Ashley Maureen Williams";
-    c.addAccount(accountID, routingNum, initBalance, fullName);
+    c.addAccount("checking", accountID, routingNum, initBalance, fullName);
     
     accountID = 925849516;
-    c.addAccount(accountID, routingNum, memberID);
+    c.addAccount("checking", accountID, routingNum, memberID);
     
   }
   
