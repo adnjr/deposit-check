@@ -4,6 +4,9 @@ import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 
+import accounts.AccountsManager;
+import customers.MemberManager;
+import models.AuthorizationRules;
 import models.BankingSystem;
 import models.TransactionLog;
 
@@ -12,23 +15,31 @@ public class BankingSystemController {
     private BankingSystem bankSys;
     private DepositController depCon;
     private TransactionLog transLog;
+    private AuthorizationRules authRules;
+    private AccountsManager accMan;
+    private MemberManager memMan;
     
     public BankingSystemController() {
         transLog = new TransactionLog();
+        authRules = new AuthorizationRules();
+        depCon = new DepositController(authRules);
     }
     
-    public void readCheckDeposit(String textInput) {
+    public void readCheckDeposit(String inputType) {
+    	Map<String, String> formInput;
+    	String memberIdentification;
+    	
         // TODO implement this
         
-        // prompt the user for information
-        promptForInfo();
+        // prompt user and collect information
+        formInput = promptForInfo();
         
-        // collect information
+        // pass the information to the deposit controller
+        memberIdentification = formInput.get("memberID");
+        if (memberIdentification.isEmpty())
+        	memberIdentification = formInput.get("memberFullName");
         
-        // process the information (if necessary)
-        
-        // pass the information the the primary controller
-        
+        depCon.accessAccount(formInput);
         
         throw new RuntimeException("Not yet implemented");
     }

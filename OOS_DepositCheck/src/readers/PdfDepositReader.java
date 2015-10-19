@@ -1,15 +1,12 @@
 package readers;
 
-import transactions.Deposit;
-
 public class PdfDepositReader implements DepositReader {
-    
-    
 
-    @Override
-    public Deposit getDepositInfo() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public void getDepositInfo(Integer accountID, Integer routingNum, Integer memberID, String memberFullName,
+			Integer initBalance) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

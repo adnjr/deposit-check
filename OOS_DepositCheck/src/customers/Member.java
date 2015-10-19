@@ -1,19 +1,19 @@
-package models;
+package customers;
 
 import java.util.Date;
 
-public class Customer {
+public class Member {
     
-    private int customerID;
+    private int memberID;
     private int ssn;
     private String firstName;
     private String middleName;
     private String lastName;
     private Date dob;
     
-    public Customer(int customerID, int ssn, String firstName, String middleName,
+    public Member(int memberID, int ssn, String firstName, String middleName,
                                                    String lastName, Date dob) {
-        this.customerID = customerID;
+        this.memberID = memberID;
         this.ssn = ssn;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -21,12 +21,12 @@ public class Customer {
         this.dob = dob;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public int getMemberID() {
+        return memberID;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;
     }
 
     public int getSSN() {

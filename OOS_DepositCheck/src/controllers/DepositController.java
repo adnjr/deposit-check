@@ -3,7 +3,7 @@ package controllers;
 import java.util.Date;
 import java.util.Map;
 
-import models.Account;
+import accounts.Account;
 import models.AuthorizationRules;
 import models.transactions.Deposit;
 
@@ -13,19 +13,25 @@ public class DepositController {
 	private AuthorizationRules authorizationRules;
 	private Account account;
 	
-	public DepositController(Map<String, String> formInput, AuthorizationRules authRules) {
+	public DepositController(AuthorizationRules authRules) {
 //	    this.bankingSystem = bankingSystem;
 	    this.authorizationRules = authRules;
 	    
 	    
-	    processInput();
-	    accessAccount();
+//	    processInput();
+//	    accessAccount();
 	    
 	}
-	
-	
-	
-	public boolean accessAccount(int accountNumber, int customerID) {
+
+	public boolean accessAccount(Map<String, String> formInput) {
+		String memberIdentification;
+		
+		memberIdentification = formInput.get("memberID");
+        if (memberIdentification.isEmpty())
+        	memberIdentification = formInput.get("memberFullName");
+        
+        
+		
 	    this.account = bankingSystem.getAccount(accountNumber);
 	    return this.account.isAccessAuthorized(customerID);
 	}

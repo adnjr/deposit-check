@@ -1,4 +1,4 @@
-import models.controllers.BankingSystemController;
+import controllers.BankingSystemController;
 
 public class DepositTester{
   
