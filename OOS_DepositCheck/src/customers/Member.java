@@ -9,16 +9,14 @@ public class Member {
     private String firstName;
     private String middleName;
     private String lastName;
-    private Date dob;
     
     public Member(int memberID, int ssn, String firstName, String middleName,
-                                                   String lastName, Date dob) {
+                                                   String lastName) {
         this.memberID = memberID;
         this.ssn = ssn;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.dob = dob;
     }
 
     public int getMemberID() {
@@ -60,13 +58,9 @@ public class Member {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public Date getDOB() {
-        return dob;
-    }
-
-    public void setDOB(Date dob) {
-        this.dob = dob;
+    
+    public String getFullName() {
+    	return firstName + " " + middleName + " " + lastName;
     }
 
 }

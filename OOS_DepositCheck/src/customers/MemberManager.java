@@ -1,33 +1,32 @@
 package customers;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MemberManager {
 	
-	Map<Integer, Member> customersByID;
-	Map<String, Member> customersByName;
+	Map<Integer, Member> membersByID;
+	Map<String, Member> membersByName;
 	
 	public MemberManager() {
-		customersByID = new HashMap<Integer, Member>();
-		customersByName = new HashMap<String, Member>();
+		membersByID = new HashMap<Integer, Member>();
+		membersByName = new HashMap<String, Member>();
 	}
 	
-	public void addMember(int customerID, int ssn, String firstName, String middleName,
-            String lastName, Date dob) {
+	public void addMember(int memberID, int ssn, String firstName, String middleName,
+            String lastName) {
 		Member newMember;
 		
-		newMember = new Member(customerID, ssn, firstName, middleName, lastName, dob);
-		customersByID.put(customerID, newMember);
-		customersByName.put(firstName + " " + middleName + " " + lastName, newMember);
+		newMember = new Member(memberID, ssn, firstName, middleName, lastName);
+		membersByID.put(memberID, newMember);
+		membersByName.put(newMember.getFullName(), newMember);
 	}
 	
 	public int getMemberIDOf(String memberFullName) {
 		Member member;
 		int id = -1;
 		
-		if ( (member = customersByName.get(memberFullName)) != null)
+		if ( (member = membersByName.get(memberFullName)) != null)
 				id = member.getMemberID();
 		
 		return id;
@@ -37,8 +36,8 @@ public class MemberManager {
 		Member member;
 		String name = null;
 		
-		if ( (member = customersByID.get(memberID)) != null)
-			name = member.getFirstName() + " " + member.getMiddleName() + " " + member.getLastName();
+		if ( (member = membersByID.get(memberID)) != null)
+			name = member.getFullName();
 		
 		return name;
 	}

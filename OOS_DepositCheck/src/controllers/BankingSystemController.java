@@ -39,8 +39,15 @@ public class BankingSystemController {
         if (memberIdentification.isEmpty())
         	memberIdentification = formInput.get("memberFullName");
         
+        
         depCon.accessAccount(formInput);
         
+        throw new RuntimeException("Not yet implemented");
+    }
+    
+ // uses inputType to distinguish between check image or pdf file (or future types)
+    public void readCheckDeposit(String inputType, String fileName) {
+        // TODO implement this
         throw new RuntimeException("Not yet implemented");
     }
     
@@ -81,15 +88,8 @@ public class BankingSystemController {
         return formInput;
     }
     
-    // uses inputType to distinguish between check image or pdf file (or future types)
-    public void readCheckDeposit(String inputType, String fileName) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
-    }
-    
-    public void addMember(String fName, String mName, String lName, int memberID) {
-        // TODO implement this
-        throw new RuntimeException("Not yet implemented");
+    public void addMember(int ssn, String fName, String mName, String lName, int memberID) {
+    	memMan.addMember(memberID, ssn, fName, mName, lName);
     }
     
     public void addAccount(String accountType, int accountID, int routingNum, double initBalance, int memberID) {
