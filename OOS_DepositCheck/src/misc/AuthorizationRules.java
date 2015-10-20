@@ -1,4 +1,4 @@
-package models;
+package misc;
 
 public class AuthorizationRules {
     

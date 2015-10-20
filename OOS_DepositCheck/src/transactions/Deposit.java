@@ -14,7 +14,7 @@ public class Deposit extends Transaction {
     }
 
 	@Override
-	public long getNewBalance() {
+	public double getNewBalance() {
 		return getPreviousBalance() + getAmount();
 	}
     

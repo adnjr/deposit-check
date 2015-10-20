@@ -5,28 +5,30 @@ import java.util.List;
 
 abstract public class Account {
 
-	private long accountNumber;
+	private Long accountNumber;
 	private List<Long> memberIDs;
-	private long balance;
+	private Long balance;
 	private String status;
 	
-	public Account(long accountNumber, long routingNum, long balance, long... memberIDs) {
+	public Account(Long accountNumber, Long routingNum, Long balance, Long... memberIDs) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 
 		this.memberIDs = new ArrayList<Long>();
 		if (memberIDs != null && memberIDs.length > 0)
-			for (long id : memberIDs)
+			for (Long id : memberIDs)
 				this.memberIDs.add(id);
+		
+		this.status = "open";
 	}
 
 	abstract public String getAccountType();
 	
-	public long getAccountNumber() {
+	public Long getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(long accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
@@ -39,13 +41,13 @@ abstract public class Account {
 	}
 
 	// balance returned in dollars
-	public double getBalance() {
+	public Double getBalance() {
 		return balance / 10.0;
 	}
 
 	// balance parameter should be in dollars
-	public void setBalance(double balance) {
-		this.balance = (int)(balance * 10);
+	public void setBalance(Double balance) {
+		this.balance = (long)(balance * 10);
 	}
 
     public String getStatus() {
@@ -56,7 +58,7 @@ abstract public class Account {
         this.status = status;
     }
 	
-	public void addMember(long memberID) {
+	public void addMember(Long memberID) {
 	    memberIDs.add(memberID);
 	}
 	
@@ -70,7 +72,7 @@ abstract public class Account {
 	
 	@Override
 	public String toString() {
-	    return "account " + getAccountNumber() + ": " + getBalance();
+	    return "account #" + getAccountNumber() + ": $" + getBalance();
 	}
 	
 }

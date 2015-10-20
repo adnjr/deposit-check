@@ -2,13 +2,11 @@ package accounts;
 
 import java.util.Map;
 
-import members.Member;
-
 public class CheckingAccount extends Account {
     
     private static final String ACCOUNT_TYPE = "checking";
     
-    public CheckingAccount(long accountNumber, long routingNum, long balance, long... memberIDs) {
+    public CheckingAccount(Long accountNumber, Long routingNum, Long balance, Long... memberIDs) {
         super(accountNumber, routingNum, balance, memberIDs);
     }
 

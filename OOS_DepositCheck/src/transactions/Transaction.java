@@ -21,7 +21,7 @@ abstract public class Transaction {
     
     abstract public String getType();
     
-    abstract public long getNewBalance();
+    abstract public double getNewBalance();
 
     public long getTransactionID() {
         return transactionID;
@@ -31,12 +31,12 @@ abstract public class Transaction {
         return accountNumber;
     }
 
-    public long getPreviousBalance() {
-        return previousBalance;
+    public double getPreviousBalance() {
+        return previousBalance / 10.0;
     }
 
-    public long getAmount() {
-        return amount;
+    public double getAmount() {
+        return amount / 10.0;
     }
 
     public Date getDate() {
@@ -45,7 +45,7 @@ abstract public class Transaction {
     
     @Override
     public String toString() {
-        return getType() + " transaction " + getTransactionID() + ": " + getAmount();
+        return getType() + " transaction #" + getTransactionID() + ": #" + getAmount();
     }
     
 }

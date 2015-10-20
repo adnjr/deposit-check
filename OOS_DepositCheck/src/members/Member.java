@@ -53,7 +53,7 @@ public class Member {
     
     @Override
     public String toString() {
-        return "member " + getMemberID() + ": " + getFullName();
+        return "member #" + getMemberID() + ": " + getFullName();
     }
 
 }

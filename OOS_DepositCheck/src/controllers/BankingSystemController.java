@@ -9,14 +9,12 @@ import java.util.Map;
 import accounts.Account;
 import accounts.AccountsManager;
 import members.MemberManager;
-import models.AuthorizationRules;
-import models.BankingSystem;
+import misc.AuthorizationRules;
 import transactions.Transaction;
 import transactions.TransactionLog;
 
 public class BankingSystemController {
     
-    private BankingSystem bankSys;
     private DepositController depCon;
     private TransactionLog transLog;
     private AuthorizationRules authRules;
@@ -129,32 +127,32 @@ public class BankingSystemController {
     	memMan.addMember(memberID, fName, mName, lName);
     }
     
-    public void addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, Long memberID) {
+    public boolean addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, Long memberID) {
     	Long balance = (long)(initBalance * 10);
-        accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
+        return accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
-    public void addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, Long memberID) {
-    	Long balance = initBalance * 10;
-        accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
-    }
+//    public boolean addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, Long memberID) {
+//    	Long balance = initBalance * 10;
+//    	return accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
+//    }
     
-    public void addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, String fullName) {
+    public boolean addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, String fullName) {
     	Long balance = (long)(initBalance * 10);
-        accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
+    	return accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
     
-    public void addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName) {
-    	Long balance = initBalance * 10;
-        accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
+//    public boolean addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName) {
+//    	Long balance = initBalance * 10;
+//    	return accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
+//    }
+    
+    public boolean addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
+    	return accMan.addAccount(accountType, accountID, routingNum, fullName);
     }
     
-    public void addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
-        accMan.addAccount(accountType, accountID, routingNum, fullName);
-    }
-    
-    public void addAccount(String accountType, Long accountID, Long routingNum, Long memberID) {
-        accMan.addAccount(accountType, accountID, routingNum, memberID);
+    public boolean addAccount(String accountType, Long accountID, Long routingNum, Long memberID) {
+    	return accMan.addAccount(accountType, accountID, routingNum, memberID);
     }
     
     

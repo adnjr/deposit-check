@@ -1,4 +1,7 @@
 package misc;
+import java.util.HashMap;
+import java.util.Map;
+
 import controllers.BankingSystemController;
 
 public class DepositTester{
@@ -52,19 +55,18 @@ public class DepositTester{
   // it was put in (DO NOT FORGET TO INCLUDE PATTERNS FOR
   // EVRY OPERATION IN EVERY CLASS, YOU WILL BE MARKED OFF
   // IF YOU DO!!!)
-  public static void main (String[] args){
-    
-    BankingSystemController c = new BankingSystemController();
-    fillProfilesAndAccounts(c);
-    printMemberInfo(c);
-    
-    c.readCheckDeposit("text");
-    printMemberInfo(c);
-    c.readCheckDeposit("image", "SampleImage1.png");
-    printMemberInfo(c);
-    c.readCheckDeposit("pdf", "SamplePDF1.pdf");
-    printMemberInfo(c);
-  }
+	public static void main (String[] args){
+		BankingSystemController c = new BankingSystemController();
+		fillProfilesAndAccounts(c);
+		printMemberInfo(c);
+
+		c.readCheckDeposit("text");
+		printMemberInfo(c);
+		c.readCheckDeposit("image", "SampleImage1.png");
+		printMemberInfo(c);
+		c.readCheckDeposit("pdf", "SamplePDF1.pdf");
+		printMemberInfo(c);
+	}
   
   // Since we are not worried about a database (yet) you can simply
   // fill in some Members and Accounts here. The format used here
@@ -88,60 +90,67 @@ public class DepositTester{
   // the formats below, just don't change the values).
   public static void fillProfilesAndAccounts(BankingSystemController c){
     String fName, mName, lName, fullName;
-    long memberID, accountID, routingNum, ssn;
-    double initBalance;
+    Long memberID, accountID, routingNum, ssn;
+    Double initBalance;
     
     //Member Profiles
     fName = "John";
     mName = "Z";
     lName = "Smith";
-    memberID = 123456;
+    memberID = 123456L;
     c.addMember(fName, mName, lName, memberID);
     
     fName = "Roger";
     mName = "M";
     lName = "Doe";
-    memberID = 658241;
+    memberID = 658241L;
     c.addMember(fName, mName, lName, memberID);
     
     fName = "Ashley";
     mName = "Maureen";
     lName = "Williams";
-    memberID = 987654;
+    memberID = 987654L;
     c.addMember(fName, mName, lName, memberID);
     
     //Member Accounts
-    accountID = 724301068;
-    routingNum = 122105278;
-    memberID = 123456;
+    accountID = 724301068L;
+    routingNum = 122105278L;
+    memberID = 123456L;
     initBalance = 8003.00;
-    c.addAccount("checking", accountID, routingNum, initBalance, memberID);
+    if (!c.addAccount("checking", accountID, routingNum, initBalance, memberID))
+    	System.err.println("Failed to add account " + accountID);
     
-    accountID = 512463512;
-    c.addAccount("checking", accountID, routingNum, memberID);
+    accountID = 512463512L;
+    if (!c.addAccount("checking", accountID, routingNum, memberID))
+    	System.err.println("Failed to add account " + accountID);
     
-    accountID = 555555555;
-    routingNum = 333388888;
+    accountID = 555555555L;
+    routingNum = 333388888L;
     fullName = "Roger M Doe";
-    c.addAccount("checking", accountID, routingNum, fullName);
+    if (!c.addAccount("checking", accountID, routingNum, fullName))
+    	System.err.println("Failed to add account " + accountID);
     
-    accountID = 886611554;
-    routingNum = 324752184;
+    accountID = 886611554L;
+    routingNum = 324752184L;
     initBalance = 600.00;
-    memberID = 987654;
-    c.addAccount("checking", accountID, routingNum, initBalance, memberID);
+    memberID = 987654L;
+    if (!c.addAccount("checking", accountID, routingNum, initBalance, memberID))
+    	System.err.println("Failed to add account " + accountID);
     
-    accountID = 449977123;
+    accountID = 449977123L;
     initBalance = 30.00;
     fullName = "Ashley Maureen Williams";
-    c.addAccount("checking", accountID, routingNum, initBalance, fullName);
+    if (!c.addAccount("checking", accountID, routingNum, initBalance, fullName))
+    	System.err.println("Failed to add account " + accountID);
     
-    accountID = 925849516;
-    c.addAccount("checking", accountID, routingNum, memberID);
+    accountID = 925849516L;
+    if (!c.addAccount("checking", accountID, routingNum, memberID))
+    	System.err.println("Failed to add account " + accountID);
     
   }
   
   public static void printMemberInfo(BankingSystemController c) {
+	  System.out.println("\nListing all accounts w/info:");
       System.out.println(c.getAllAccountInfo());
       // Have this method print ALL members and their
       // account details. An example print out follows

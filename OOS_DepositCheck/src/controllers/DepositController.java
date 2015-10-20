@@ -1,12 +1,11 @@
 package controllers;
 
-import java.util.Date;
 import java.util.Map;
 
 import accounts.Account;
 import accounts.AccountsManager;
 import members.MemberManager;
-import models.AuthorizationRules;
+import misc.AuthorizationRules;
 import readers.DepositReader;
 import readers.DepositReaderFactory;
 import transactions.Deposit;
