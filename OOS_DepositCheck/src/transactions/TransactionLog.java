@@ -7,6 +7,7 @@ import java.util.Map;
 
 import misc.Database;
 
+// High Cohesion, Low Coupling
 public class TransactionLog {
     
     private Map<Long, Transaction> transactions;
@@ -17,6 +18,7 @@ public class TransactionLog {
         nextTransactionID = 0;
     }
     
+    // Expert
     public void addTransaction(String type, Map<String, String> input) {
         Transaction trans = null;
         
@@ -29,6 +31,7 @@ public class TransactionLog {
         transactions.put(trans.getTransactionID(), trans);
     }
     
+    // Expert
     public List<Transaction> getAccountTransactions(long accountID) {
         List<Transaction> result = new ArrayList<Transaction>();
         

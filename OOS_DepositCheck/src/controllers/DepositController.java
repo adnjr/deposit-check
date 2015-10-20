@@ -11,6 +11,12 @@ import readers.DepositReaderFactory;
 import transactions.Deposit;
 import transactions.TransactionLog;
 
+/*
+ * Session Controller, High Cohesion: Using a DepositController to handle
+ * deposit operations increases cohesion, by allowing a secondary controller
+ * to shoulder the responsibility, instead of the primary controller handling
+ * everything.
+ */
 public class DepositController {
 
 	private AuthorizationRules authorizationRules;
@@ -26,6 +32,7 @@ public class DepositController {
 	    this.transLog = transLog;
 	}	
 
+	// Session Controller: this operation handles account access for deposits
 	public boolean accessAccount(Map<String, String> formInput) {        
 		long memberID = -1;
 		long acctID;
@@ -49,6 +56,7 @@ public class DepositController {
 	    return this.account.isAccessAuthorized(memberID);
 	}
 	
+	// Session Controller: this operation handles authorization for deposits
 	public boolean authorizeDeposit() {
 	    return this.authorizationRules.isTransactionAuthorized(
 	    		this.account.getAccountType(),
@@ -56,6 +64,7 @@ public class DepositController {
 	            Deposit.TRANSACTION_TYPE);
 	}
 	
+	// Session Controller: this operation creates the deposit
 	public boolean makeDeposit(Map<String, String> input) {
 		DepositReader reader;
 		Map<String, String> depInfo;

@@ -1,6 +1,9 @@
 package misc;
 import controllers.BankingSystemController;
 
+/*
+ * NOTE: THIS MUST BE RUN FROM THE COMMAND LINE (console)
+ */
 public class DepositTester{
   
 	public static void main (String[] args){
@@ -10,10 +13,14 @@ public class DepositTester{
 
 		c.readCheckDeposit("text");
 		printMemberInfo(c);
-		c.readCheckDeposit("image", "SampleImage1.png");
+		c.readCheckDeposit("text");
 		printMemberInfo(c);
-		c.readCheckDeposit("pdf", "SamplePDF1.pdf");
-		printMemberInfo(c);
+		
+		// unfortunately, I was unable to implement the use of the APIs
+//		c.readCheckDeposit("image", "SampleImage1.png");
+//		printMemberInfo(c);
+//		c.readCheckDeposit("pdf", "SamplePDF1.pdf");
+//		printMemberInfo(c);
 	}
   
   public static void fillProfilesAndAccounts(BankingSystemController c){

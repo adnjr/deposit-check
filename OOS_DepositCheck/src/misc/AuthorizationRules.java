@@ -6,6 +6,7 @@ public class AuthorizationRules {
 
     }
     
+    // Expert
     public boolean isTransactionAuthorized(String accountType, String accountStatus,
                                                       String transactionType) {
     	
@@ -21,6 +22,7 @@ public class AuthorizationRules {
        return false;
     }
     
+    // helper method
     private boolean openRules(String accountType, String accountStatus, String transactionType) {
     	switch (accountType) {
     	case "checking":
@@ -42,10 +44,12 @@ public class AuthorizationRules {
     	return false;
     }
     
+    // helper method
     private boolean pendingRules(String accountType, String accountStatus, String transactionType) {
     	return false;
     }
     
+    // helper method
     private boolean closedRules(String accountType, String accountStatus, String transactionType) {
     	return false;
     }

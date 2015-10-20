@@ -8,6 +8,7 @@ public class CheckDepositReader implements DepositReader {
 		
 	}
 
+	// Polymorphism
 	@Override
 	public Map<String, String> getDepositInfo() {
 		// TODO Auto-generated method stub

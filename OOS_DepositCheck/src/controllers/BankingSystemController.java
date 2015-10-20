@@ -13,6 +13,12 @@ import misc.AuthorizationRules;
 import transactions.Transaction;
 import transactions.TransactionLog;
 
+/* Controller, Indirection, Facade, Protected Variations:
+ * This is a facade controller, that provides an interface for the UI layer to
+ * interact with the application and domain logic.  This separation of concerns
+ * adds a level of Indirection between the UI and application logic, which
+ * protects one from the other's variability.
+ */
 public class BankingSystemController {
     
     private DepositController depCon;
@@ -30,6 +36,7 @@ public class BankingSystemController {
         depCon = new DepositController(authRules, accMan, memMan, transLog);
     }
     
+    // Controller: this system operation should be implemented by the top-level controller 
     public void readCheckDeposit(String inputType) {
     	Map<String, String> formInput;
     	
@@ -47,12 +54,12 @@ public class BankingSystemController {
         
     }
     
-    // uses inputType to distinguish between check image or pdf file (or future types)
+    // Controller: this system operation should be implemented by the top-level controller
     public void readCheckDeposit(String inputType, String fileName) {
-        // TODO implement this
         throw new RuntimeException("Not yet implemented");
     }
     
+    // Controller: this system operation should be implemented by the top-level controller
     public String getAllAccountInfo() {
         Collection<Account> accounts;
         List<Transaction> acctTransactions;
@@ -74,6 +81,7 @@ public class BankingSystemController {
         return str;
     }
     
+    // private helper method: prints an error and exits
     private void errExit(String message) {
     	Console console;
     	
@@ -85,6 +93,7 @@ public class BankingSystemController {
     	System.exit(1);
     }
     
+    // this is a substitute for obtaining information by filling out a web form
     private Map<String, String> promptForInfo() {
         Console console;
         Map<String, String> formInput;
@@ -123,24 +132,29 @@ public class BankingSystemController {
         return formInput;
     }
     
+    // Controller: this system operation should be implemented by the top-level controller
     public void addMember(String fName, String mName, String lName, Long memberID) {
     	memMan.addMember(memberID, fName, mName, lName);
     }
     
+    // Controller: this system operation should be implemented by the top-level controller    
     public boolean addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, Long memberID) {
     	Long balance = (long)(initBalance * 10);
         return accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
+    // Controller: this system operation should be implemented by the top-level controller    
     public boolean addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, String fullName) {
     	Long balance = (long)(initBalance * 10);
     	return accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
-    
+
+    // Controller: this system operation should be implemented by the top-level controller
     public boolean addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
     	return accMan.addAccount(accountType, accountID, routingNum, fullName);
     }
     
+    // Controller: this system operation should be implemented by the top-level controller
     public boolean addAccount(String accountType, Long accountID, Long routingNum, Long memberID) {
     	return accMan.addAccount(accountType, accountID, routingNum, memberID);
     }

@@ -2,6 +2,7 @@ package readers;
 
 import java.util.Map;
 
+// Polymorphism, Adapter
 public class WebDepositReader implements DepositReader {
 
     private Map<String, String> input;
@@ -10,6 +11,7 @@ public class WebDepositReader implements DepositReader {
     	this.input = formInput;
     }
 
+    // Polymorphism, Adapter
     @Override
     public Map<String, String> getDepositInfo() {
     	return this.input;

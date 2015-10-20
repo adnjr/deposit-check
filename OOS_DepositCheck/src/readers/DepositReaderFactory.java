@@ -2,6 +2,7 @@ package readers;
 
 import java.util.HashMap;
 
+// Factory, Singleton, Pure Fabrication
 public class DepositReaderFactory {
     
     private static DepositReaderFactory depFactory;
@@ -10,6 +11,7 @@ public class DepositReaderFactory {
         
     }
     
+    // Singleton
     public static DepositReaderFactory getFactory() {
         if (depFactory == null)
             depFactory = new DepositReaderFactory();
@@ -17,6 +19,7 @@ public class DepositReaderFactory {
         return depFactory;
     }
     
+    // Factory
     @SuppressWarnings("unchecked")
 	public DepositReader getDepositReader(String inputType, Object input) {
         DepositReader reader = null;
