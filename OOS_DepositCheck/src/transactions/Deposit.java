@@ -4,7 +4,7 @@ public class Deposit extends Transaction {
     
     public static final String TRANSACTION_TYPE = "deposit";
     
-    public Deposit(int transactionID, int accountNumber, int previousBalance, int amount) {   
+    public Deposit(long transactionID, long accountNumber, long previousBalance, long amount) {   
         super(transactionID, accountNumber, previousBalance, amount);
     }
 
@@ -14,7 +14,7 @@ public class Deposit extends Transaction {
     }
 
 	@Override
-	public int getNewBalance() {
+	public long getNewBalance() {
 		return getPreviousBalance() + getAmount();
 	}
     

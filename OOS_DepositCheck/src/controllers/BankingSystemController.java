@@ -65,7 +65,7 @@ public class BankingSystemController {
             
             str = str + acct.toString() + "\n";
 
-            for (Integer memberID : acct.getMembers())
+            for (Long memberID : acct.getMembers())
                 str = str + "\t" + memMan.getMember(memberID).toString() + "\n";
             
             acctTransactions = transLog.getAccountTransactions(acct.getAccountNumber());
@@ -100,14 +100,14 @@ public class BankingSystemController {
         System.out.println("Enter the following check information:");
         
         if ( (console = System.console()) == null)
-            throw new RuntimeException("Console unavailable. Console input required.");
+            throw new RuntimeException("Console unavailable. Console input required. Please run program from the command line.");
         
         do {
             try {
                 accountStr = console.readLine("Account ID: ").trim();
                 routingStr = console.readLine(("Routing Number: ")).trim();
                 memberStr = console.readLine("Member ID: ").trim();
-                memberFullName = console.readLine("Full Name").trim();
+                memberFullName = console.readLine("Full Name: ").trim();
                 amountStr = console.readLine("Deposit Amount: ").trim();
                 
             } catch (NumberFormatException e) {
@@ -125,35 +125,35 @@ public class BankingSystemController {
         return formInput;
     }
     
-    public void addMember(String fName, String mName, String lName, int memberID) {
+    public void addMember(String fName, String mName, String lName, Long memberID) {
     	memMan.addMember(memberID, fName, mName, lName);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, double initBalance, int memberID) {
-    	int balance = (int)(initBalance * 10);
+    public void addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, Long memberID) {
+    	Long balance = (long)(initBalance * 10);
         accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, int initBalance, int memberID) {
-    	int balance = initBalance * 10;
+    public void addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, Long memberID) {
+    	Long balance = initBalance * 10;
         accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, double initBalance, String fullName) {
-    	int balance = (int)(initBalance * 10);
+    public void addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, String fullName) {
+    	Long balance = (long)(initBalance * 10);
         accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, int initBalance, String fullName) {
-    	int balance = initBalance * 10;
+    public void addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName) {
+    	Long balance = initBalance * 10;
         accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, String fullName) {
+    public void addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
         accMan.addAccount(accountType, accountID, routingNum, fullName);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, int memberID) {
+    public void addAccount(String accountType, Long accountID, Long routingNum, Long memberID) {
         accMan.addAccount(accountType, accountID, routingNum, memberID);
     }
     

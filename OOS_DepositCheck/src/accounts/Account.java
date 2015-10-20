@@ -5,36 +5,36 @@ import java.util.List;
 
 abstract public class Account {
 
-	private int accountNumber;
-	private List<Integer> memberIDs;
-	private int balance;
+	private long accountNumber;
+	private List<Long> memberIDs;
+	private long balance;
 	private String status;
 	
-	public Account(int accountNumber, int routingNum, int balance, int... memberIDs) {
+	public Account(long accountNumber, long routingNum, long balance, long... memberIDs) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 
-		this.memberIDs = new ArrayList<Integer>();
+		this.memberIDs = new ArrayList<Long>();
 		if (memberIDs != null && memberIDs.length > 0)
-			for (int id : memberIDs)
+			for (long id : memberIDs)
 				this.memberIDs.add(id);
 	}
 
 	abstract public String getAccountType();
 	
-	public int getAccountNumber() {
+	public long getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
-	public List<Integer> getMembers() {
+	public List<Long> getMembers() {
 		return memberIDs;
 	}
 
-	public void setMembers(List<Integer> memberIDs) {
+	public void setMembers(List<Long> memberIDs) {
 		this.memberIDs = memberIDs;
 	}
 
@@ -56,15 +56,15 @@ abstract public class Account {
         this.status = status;
     }
 	
-	public void addMember(int memberID) {
+	public void addMember(long memberID) {
 	    memberIDs.add(memberID);
 	}
 	
-	public void removeMember(Integer memberID) {
+	public void removeMember(Long memberID) {
 	    memberIDs.remove(memberID);
 	}
 	
-	public boolean isAccessAuthorized(Integer memberID) {
+	public boolean isAccessAuthorized(Long memberID) {
 	    return memberIDs.contains(memberID);
 	}
 	

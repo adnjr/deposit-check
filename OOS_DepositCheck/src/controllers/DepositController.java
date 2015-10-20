@@ -28,9 +28,15 @@ public class DepositController {
 	}	
 
 	public boolean accessAccount(Map<String, String> formInput) {        
-		int memberID;
+		long memberID;
+		long acctID;
 		
-		this.account = accMan.getAccountOf(Integer.parseInt(formInput.get("accountID")));
+		acctID = Long.parseLong(formInput.get("accountID"));
+		this.account = accMan.getAccountOf(acctID);
+		if (this.account == null) {
+		    System.err.println("Account " + acctID + " not found.");
+		    System.exit(1);
+		}
 		
         if (!formInput.get("memberID").isEmpty())
         	memberID = Integer.parseInt(formInput.get("memberID"));

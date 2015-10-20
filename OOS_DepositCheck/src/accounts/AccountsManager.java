@@ -10,11 +10,11 @@ public class AccountsManager {
 	
 	private MemberManager memMan;
 	private Map<String, Account> accountsByName;
-	private Map<Integer, Account> accountsByNumber;
+	private Map<Long, Account> accountsByNumber;
 	
 	public AccountsManager(MemberManager memberManager) {
 		accountsByName = new HashMap<String, Account>();
-		accountsByNumber = new HashMap<Integer, Account>();
+		accountsByNumber = new HashMap<Long, Account>();
 		memMan = memberManager;
 	}
 	
@@ -22,7 +22,7 @@ public class AccountsManager {
 		return accountsByName.get(memberFullName);
 	}
 	
-	public Account getAccountOf(Integer memberID) {
+	public Account getAccountOf(Long memberID) {
 		return accountsByNumber.get(memberID);
 	}
 	
@@ -30,7 +30,7 @@ public class AccountsManager {
 	    return accountsByNumber.values();
 	}
 	
-	public void addAccount(String accountType, int accountID, int routingNum, int initBalance, int memberID) {
+	public void addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, Long memberID) {
 		Account newAccount;
 		String fullName;
 		
@@ -44,9 +44,9 @@ public class AccountsManager {
 		accountsByNumber.put(memberID, newAccount);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, int initBalance, String fullName) {
+    public void addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName) {
     	Account newAccount;
-    	int memberID;
+    	Long memberID;
     	
     	memberID = memMan.getMemberIDOf(fullName);
     	if (accountType.equals("checking"))
@@ -58,9 +58,9 @@ public class AccountsManager {
 		accountsByNumber.put(memberID, newAccount);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, String fullName) {
+    public void addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
     	Account newAccount;
-    	int memberID;
+    	Long memberID;
         
     	memberID = memMan.getMemberIDOf(fullName);
     	if (accountType.equals("checking"))
@@ -72,7 +72,7 @@ public class AccountsManager {
 		accountsByNumber.put(memberID, newAccount);
     }
     
-    public void addAccount(String accountType, int accountID, int routingNum, int memberID) {
+    public void addAccount(String accountType, Long accountID, Long routingNum, Long memberID) {
     	Account newAccount;
     	String fullName;
         

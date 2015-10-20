@@ -88,7 +88,7 @@ public class DepositTester{
   // the formats below, just don't change the values).
   public static void fillProfilesAndAccounts(BankingSystemController c){
     String fName, mName, lName, fullName;
-    int memberID, accountID, routingNum, ssn;
+    long memberID, accountID, routingNum, ssn;
     double initBalance;
     
     //Member Profiles

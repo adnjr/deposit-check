@@ -17,7 +17,7 @@ public class TransactionFactory {
 		return transFact;
 	}
 	
-	public Transaction makeTransaction(int transID, String transType, Map<String, String> input) {
+	public Transaction makeTransaction(long transID, String transType, Map<String, String> input) {
 	    int accountID;
 	    int previousBalance;
 	    int amount;

@@ -4,14 +4,14 @@ import java.util.Date;
 
 abstract public class Transaction {
     
-    private int transactionID;
-    private int accountNumber;
-    private int previousBalance;
-    private int amount;
+    private long transactionID;
+    private long accountNumber;
+    private long previousBalance;
+    private long amount;
     private Date date;
 
-    public Transaction(int transactionID, int accountNumber, int previousBalance,
-                       int amount) {
+    public Transaction(long transactionID, long accountNumber, long previousBalance,
+                       long amount) {
         this.transactionID = transactionID;
         this.accountNumber = accountNumber;
         this.previousBalance = previousBalance;
@@ -21,21 +21,21 @@ abstract public class Transaction {
     
     abstract public String getType();
     
-    abstract public int getNewBalance();
+    abstract public long getNewBalance();
 
-    public int getTransactionID() {
+    public long getTransactionID() {
         return transactionID;
     }
 
-    public int getAccountNumber() {
+    public long getAccountNumber() {
         return accountNumber;
     }
 
-    public int getPreviousBalance() {
+    public long getPreviousBalance() {
         return previousBalance;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 

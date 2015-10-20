@@ -9,11 +9,11 @@ import misc.Database;
 
 public class TransactionLog {
     
-    private Map<Integer, Transaction> transactions;
-    private int nextTransactionID;
+    private Map<Long, Transaction> transactions;
+    private long nextTransactionID;
     
     public TransactionLog() {
-        transactions = new HashMap<Integer, Transaction>();
+        transactions = new HashMap<Long, Transaction>();
         nextTransactionID = 0;
     }
     
@@ -29,7 +29,7 @@ public class TransactionLog {
         transactions.put(trans.getTransactionID(), trans);
     }
     
-    public List<Transaction> getAccountTransactions(int accountID) {
+    public List<Transaction> getAccountTransactions(long accountID) {
         List<Transaction> result = new ArrayList<Transaction>();
         
         for (Transaction trans : transactions.values())

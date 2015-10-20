@@ -8,7 +8,7 @@ public class CheckingAccount extends Account {
     
     private static final String ACCOUNT_TYPE = "checking";
     
-    public CheckingAccount(int accountNumber, int routingNum, int balance, int... memberIDs) {
+    public CheckingAccount(long accountNumber, long routingNum, long balance, long... memberIDs) {
         super(accountNumber, routingNum, balance, memberIDs);
     }
 

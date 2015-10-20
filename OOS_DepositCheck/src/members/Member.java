@@ -2,12 +2,12 @@ package members;
 
 public class Member {
     
-    private int memberID;
+    private long memberID;
     private String firstName;
     private String middleName;
     private String lastName;
     
-    public Member(int memberID, String firstName, String middleName,
+    public Member(long memberID, String firstName, String middleName,
                                                    String lastName) {
         this.memberID = memberID;
         this.firstName = firstName;
@@ -15,11 +15,11 @@ public class Member {
         this.lastName = lastName;
     }
 
-    public int getMemberID() {
+    public long getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(int memberID) {
+    public void setMemberID(long memberID) {
         this.memberID = memberID;
     }
 

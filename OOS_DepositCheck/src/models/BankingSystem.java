@@ -11,18 +11,18 @@ import transactions.Deposit;
 import transactions.Transaction;
 
 public class BankingSystem {
-	private Map<Integer, Account> accounts;
-	private Map<Integer, Member> members;
-	private Map<Integer, Transaction> transactions;
+	private Map<Long, Account> accounts;
+	private Map<Long, Member> members;
+	private Map<Long, Transaction> transactions;
 	
 	public static void main(String[] args) {
 	    Ocr.setUp();
 	}
 
 	public BankingSystem() {
-		this.accounts = new HashMap<Integer, Account>();
-		this.members = new HashMap<Integer, Member>();
-		this.transactions = new HashMap<Integer, Transaction>();
+		this.accounts = new HashMap<Long, Account>();
+		this.members = new HashMap<Long, Member>();
+		this.transactions = new HashMap<Long, Transaction>();
 	}
 
 	public Account getAccount(Integer accountNumber) {

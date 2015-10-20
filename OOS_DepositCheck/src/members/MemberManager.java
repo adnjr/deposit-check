@@ -5,15 +5,15 @@ import java.util.Map;
 
 public class MemberManager {
 	
-	Map<Integer, Member> membersByID;
+	Map<Long, Member> membersByID;
 	Map<String, Member> membersByName;
 	
 	public MemberManager() {
-		membersByID = new HashMap<Integer, Member>();
+		membersByID = new HashMap<Long, Member>();
 		membersByName = new HashMap<String, Member>();
 	}
 	
-	public void addMember(int memberID, String firstName, String middleName,
+	public void addMember(long memberID, String firstName, String middleName,
             String lastName) {
 		Member newMember;
 		
@@ -22,9 +22,9 @@ public class MemberManager {
 		membersByName.put(newMember.getFullName(), newMember);
 	}
 	
-	public int getMemberIDOf(String memberFullName) {
+	public long getMemberIDOf(String memberFullName) {
 		Member member;
-		int id = -1;
+		long id = -1;
 		
 		if ( (member = membersByName.get(memberFullName)) != null)
 				id = member.getMemberID();
@@ -32,7 +32,7 @@ public class MemberManager {
 		return id;
 	}
 	
-	public String getNameOf(int memberID) {
+	public String getNameOf(long memberID) {
 		Member member;
 		String name = null;
 		
@@ -42,7 +42,7 @@ public class MemberManager {
 		return name;
 	}
 	
-	public Member getMember(int memberID) {
+	public Member getMember(long memberID) {
 	    return membersByID.get(memberID);
 	}
 
