@@ -39,67 +39,52 @@ public class AccountsManager {
 	}
 	
 	public boolean addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, Long memberID) {
-		Account newAccount;
 		String fullName;
 		
 		fullName = memMan.getNameOf(memberID);
-		if (accountType.equals("checking"))
-			newAccount = new CheckingAccount(accountID, routingNum, initBalance, memberID);
-		else
-			newAccount = null;
-		
-		accountsByName.put(fullName, newAccount);
-		accountsByNumber.put(memberID, newAccount);
-		
-		return newAccount != null;
+		return addAccountHelper(accountType, accountID, routingNum, initBalance, fullName, memberID);
     }
     
     public boolean addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName) {
-    	Account newAccount;
     	Long memberID;
     	
     	memberID = memMan.getMemberIDOf(fullName);
-    	if (accountType.equals("checking"))
-    		newAccount = new CheckingAccount(accountID, routingNum, initBalance, memberID);
-    	else
-    		newAccount = null;
-    	
-    	accountsByName.put(fullName, newAccount);
-		accountsByNumber.put(memberID, newAccount);
-		
-		return newAccount != null;
+    	return addAccountHelper(accountType, accountID, routingNum, initBalance, fullName, memberID);
     }
     
     public boolean addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
-    	Account newAccount;
     	Long memberID;
         
     	memberID = memMan.getMemberIDOf(fullName);
-    	if (accountType.equals("checking"))
-    		newAccount = new CheckingAccount(accountID, routingNum, 0L, memberID);
-    	else
-    		newAccount = null;
-    	
-    	accountsByName.put(fullName, newAccount);
-		accountsByNumber.put(memberID, newAccount);
-		
-		return newAccount != null;
+    	return addAccountHelper(accountType, accountID, routingNum, 0L, fullName, memberID);
     }
     
     public boolean addAccount(String accountType, Long accountID, Long routingNum, Long memberID) {
-    	Account newAccount;
     	String fullName;
         
     	fullName = memMan.getNameOf(memberID);
-    	if (accountType.equals("checking"))
-    		newAccount = new CheckingAccount(accountID, routingNum, 0L, memberID);
-    	else
-    		newAccount = null;
+    	return addAccountHelper(accountType, accountID, routingNum, 0L, fullName, memberID);
+    }
+    
+    private boolean addAccountHelper(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName, Long memberID) {
+    	Account account = null;
     	
-    	accountsByName.put(fullName, newAccount);
-		accountsByNumber.put(memberID, newAccount);
+    	// when account exists, just add the new member
+    	if ( (account = getAccountOf(accountID)) != null) {
+    		System.out.println("yeah right");
+    		account.addMember(memberID);
+    	} else {
+    		switch (accountType) {
+    		case "checking":
+    			account = new CheckingAccount(accountID, routingNum, initBalance, memberID);
+    			break;
+    		}
+    		
+    		accountsByName.put(fullName, account);
+    		accountsByNumber.put(accountID, account);
+    	}
 		
-		return newAccount != null;
+		return account != null;
     }
 
 }

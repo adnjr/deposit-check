@@ -68,7 +68,7 @@ public class BankingSystemController {
             
             acctTransactions = transLog.getAccountTransactions(acct.getAccountNumber());
             for (Transaction trans : acctTransactions)
-                str = str + "\t" + trans.toString() + "\n";
+                str = str + "\t" + trans.toString();
         }
         
         return str;
@@ -95,12 +95,12 @@ public class BankingSystemController {
         String amountStr = "";
         
         formInput = new HashMap<String, String>();
-        System.out.println("Enter the following check information:");
         
         if ( (console = System.console()) == null)
             throw new RuntimeException("Console unavailable. Console input required. Please run program from the command line.");
         
         do {
+        	System.out.println("\nEnter the following check information:");
             try {
                 accountStr = console.readLine("Account ID: ").trim();
                 routingStr = console.readLine(("Routing Number: ")).trim();
@@ -132,20 +132,10 @@ public class BankingSystemController {
         return accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
     }
     
-//    public boolean addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, Long memberID) {
-//    	Long balance = initBalance * 10;
-//    	return accMan.addAccount(accountType, accountID, routingNum, balance, memberID);
-//    }
-    
     public boolean addAccount(String accountType, Long accountID, Long routingNum, Double initBalance, String fullName) {
     	Long balance = (long)(initBalance * 10);
     	return accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
     }
-    
-//    public boolean addAccount(String accountType, Long accountID, Long routingNum, Long initBalance, String fullName) {
-//    	Long balance = initBalance * 10;
-//    	return accMan.addAccount(accountType, accountID, routingNum, balance, fullName);
-//    }
     
     public boolean addAccount(String accountType, Long accountID, Long routingNum, String fullName) {
     	return accMan.addAccount(accountType, accountID, routingNum, fullName);

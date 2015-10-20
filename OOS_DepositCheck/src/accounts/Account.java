@@ -9,10 +9,12 @@ abstract public class Account {
 	private List<Long> memberIDs;
 	private Long balance;
 	private String status;
+	private Long routingNumber;
 	
 	public Account(Long accountNumber, Long routingNum, Long balance, Long... memberIDs) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
+		this.routingNumber = routingNum;
 
 		this.memberIDs = new ArrayList<Long>();
 		if (memberIDs != null && memberIDs.length > 0)
@@ -70,9 +72,13 @@ abstract public class Account {
 	    return memberIDs.contains(memberID);
 	}
 	
+	public Long getRoutingNumber() {
+		return routingNumber;
+	}
+
 	@Override
 	public String toString() {
-	    return "account #" + getAccountNumber() + ": $" + getBalance();
+	    return "account #" + getAccountNumber() + " (routing #" + getRoutingNumber() + "): $" + getBalance();
 	}
 	
 }

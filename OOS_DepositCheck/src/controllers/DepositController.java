@@ -27,21 +27,25 @@ public class DepositController {
 	}	
 
 	public boolean accessAccount(Map<String, String> formInput) {        
-		long memberID;
+		long memberID = -1;
 		long acctID;
 		
-		acctID = Long.parseLong(formInput.get("accountID"));
-		this.account = accMan.getAccountOf(acctID);
-		if (this.account == null) {
-		    System.err.println("Account " + acctID + " not found.");
-		    System.exit(1);
+		try {
+			acctID = Long.parseLong(formInput.get("accountID"));
+			this.account = accMan.getAccountOf(acctID);
+			if (this.account == null) {
+			    System.err.println("Account " + acctID + " not found.");
+			    System.exit(1);
+			}
+			
+	        if (!formInput.get("memberID").isEmpty())
+	        	memberID = Integer.parseInt(formInput.get("memberID"));
+	        else
+	        	memberID = memMan.getMemberIDOf(formInput.get("memberFullName"));
+		} catch (NumberFormatException e) {
+			System.err.println("Error: either account ID or member ID is invalid. Enter a number for those fields.");
+			System.exit(1);
 		}
-		
-        if (!formInput.get("memberID").isEmpty())
-        	memberID = Integer.parseInt(formInput.get("memberID"));
-        else
-        	memberID = memMan.getMemberIDOf(formInput.get("memberFullName"));
-		
 	    return this.account.isAccessAuthorized(memberID);
 	}
 	
