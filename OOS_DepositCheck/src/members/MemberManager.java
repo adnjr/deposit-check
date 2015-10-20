@@ -13,11 +13,11 @@ public class MemberManager {
 		membersByName = new HashMap<String, Member>();
 	}
 	
-	public void addMember(int memberID, int ssn, String firstName, String middleName,
+	public void addMember(int memberID, String firstName, String middleName,
             String lastName) {
 		Member newMember;
 		
-		newMember = new Member(memberID, ssn, firstName, middleName, lastName);
+		newMember = new Member(memberID, firstName, middleName, lastName);
 		membersByID.put(memberID, newMember);
 		membersByName.put(newMember.getFullName(), newMember);
 	}
@@ -40,6 +40,10 @@ public class MemberManager {
 			name = member.getFullName();
 		
 		return name;
+	}
+	
+	public Member getMember(int memberID) {
+	    return membersByID.get(memberID);
 	}
 
 }

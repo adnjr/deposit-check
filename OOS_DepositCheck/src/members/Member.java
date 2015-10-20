@@ -1,19 +1,15 @@
 package members;
 
-import java.util.Date;
-
 public class Member {
     
     private int memberID;
-    private int ssn;
     private String firstName;
     private String middleName;
     private String lastName;
     
-    public Member(int memberID, int ssn, String firstName, String middleName,
+    public Member(int memberID, String firstName, String middleName,
                                                    String lastName) {
         this.memberID = memberID;
-        this.ssn = ssn;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -25,14 +21,6 @@ public class Member {
 
     public void setMemberID(int memberID) {
         this.memberID = memberID;
-    }
-
-    public int getSSN() {
-        return ssn;
-    }
-
-    public void setSSN(int ssn) {
-        this.ssn = ssn;
     }
 
     public String getFirstName() {
@@ -61,6 +49,11 @@ public class Member {
     
     public String getFullName() {
     	return firstName + " " + middleName + " " + lastName;
+    }
+    
+    @Override
+    public String toString() {
+        return "member " + getMemberID() + ": " + getFullName();
     }
 
 }

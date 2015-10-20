@@ -1,5 +1,6 @@
 package accounts;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,10 @@ public class AccountsManager {
 	
 	public Account getAccountOf(Integer memberID) {
 		return accountsByNumber.get(memberID);
+	}
+	
+	public Collection<Account> getAccounts() {
+	    return accountsByNumber.values();
 	}
 	
 	public void addAccount(String accountType, int accountID, int routingNum, int initBalance, int memberID) {

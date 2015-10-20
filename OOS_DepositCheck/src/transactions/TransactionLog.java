@@ -1,6 +1,8 @@
 package transactions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import misc.Database;
@@ -25,6 +27,16 @@ public class TransactionLog {
         }
         
         transactions.put(trans.getTransactionID(), trans);
+    }
+    
+    public List<Transaction> getAccountTransactions(int accountID) {
+        List<Transaction> result = new ArrayList<Transaction>();
+        
+        for (Transaction trans : transactions.values())
+            if (trans.getAccountNumber() == accountID)
+                result.add(trans);
+        
+        return result;
     }
 
 }

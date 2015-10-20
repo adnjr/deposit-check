@@ -96,22 +96,19 @@ public class DepositTester{
     mName = "Z";
     lName = "Smith";
     memberID = 123456;
-    ssn = 123456789;
-    c.addMember(ssn, fName, mName, lName, memberID);
+    c.addMember(fName, mName, lName, memberID);
     
     fName = "Roger";
     mName = "M";
     lName = "Doe";
     memberID = 658241;
-    ssn = 658241245;
-    c.addMember(ssn, fName, mName, lName, memberID);
+    c.addMember(fName, mName, lName, memberID);
     
     fName = "Ashley";
     mName = "Maureen";
     lName = "Williams";
     memberID = 987654;
-    ssn = 594204535;
-    c.addMember(ssn, fName, mName, lName, memberID);
+    c.addMember(fName, mName, lName, memberID);
     
     //Member Accounts
     accountID = 724301068;
@@ -144,7 +141,8 @@ public class DepositTester{
     
   }
   
-  public static void printMemberInfo(BankingSystemController c){
+  public static void printMemberInfo(BankingSystemController c) {
+      System.out.println(c.getAllAccountInfo());
       // Have this method print ALL members and their
       // account details. An example print out follows
       // (you can choose a different format if you like

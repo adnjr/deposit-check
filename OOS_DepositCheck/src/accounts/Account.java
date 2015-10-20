@@ -38,12 +38,14 @@ abstract public class Account {
 		this.memberIDs = memberIDs;
 	}
 
-	public int getBalance() {
-		return balance;
+	// balance returned in dollars
+	public double getBalance() {
+		return balance / 10.0;
 	}
 
-	public void setBalance(int balance) {
-		this.balance = balance;
+	// balance parameter should be in dollars
+	public void setBalance(double balance) {
+		this.balance = (int)(balance * 10);
 	}
 
     public String getStatus() {
@@ -64,6 +66,11 @@ abstract public class Account {
 	
 	public boolean isAccessAuthorized(Integer memberID) {
 	    return memberIDs.contains(memberID);
+	}
+	
+	@Override
+	public String toString() {
+	    return "account " + getAccountNumber() + ": " + getBalance();
 	}
 	
 }

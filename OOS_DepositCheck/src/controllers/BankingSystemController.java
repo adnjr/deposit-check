@@ -1,13 +1,17 @@
 package controllers;
 
 import java.io.Console;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import accounts.Account;
 import accounts.AccountsManager;
 import members.MemberManager;
 import models.AuthorizationRules;
 import models.BankingSystem;
+import transactions.Transaction;
 import transactions.TransactionLog;
 
 public class BankingSystemController {
@@ -23,6 +27,8 @@ public class BankingSystemController {
         transLog = new TransactionLog();
         authRules = new AuthorizationRules();
         transLog = new TransactionLog();
+        memMan = new MemberManager();
+        accMan = new AccountsManager(memMan);
         depCon = new DepositController(authRules, accMan, memMan, transLog);
     }
     
@@ -47,6 +53,27 @@ public class BankingSystemController {
     public void readCheckDeposit(String inputType, String fileName) {
         // TODO implement this
         throw new RuntimeException("Not yet implemented");
+    }
+    
+    public String getAllAccountInfo() {
+        Collection<Account> accounts;
+        List<Transaction> acctTransactions;
+        String str = "";
+        
+        accounts = accMan.getAccounts();
+        for (Account acct : accounts) {
+            
+            str = str + acct.toString() + "\n";
+
+            for (Integer memberID : acct.getMembers())
+                str = str + "\t" + memMan.getMember(memberID).toString() + "\n";
+            
+            acctTransactions = transLog.getAccountTransactions(acct.getAccountNumber());
+            for (Transaction trans : acctTransactions)
+                str = str + "\t" + trans.toString() + "\n";
+        }
+        
+        return str;
     }
     
     private void errExit(String message) {
@@ -98,8 +125,8 @@ public class BankingSystemController {
         return formInput;
     }
     
-    public void addMember(int ssn, String fName, String mName, String lName, int memberID) {
-    	memMan.addMember(memberID, ssn, fName, mName, lName);
+    public void addMember(String fName, String mName, String lName, int memberID) {
+    	memMan.addMember(memberID, fName, mName, lName);
     }
     
     public void addAccount(String accountType, int accountID, int routingNum, double initBalance, int memberID) {
