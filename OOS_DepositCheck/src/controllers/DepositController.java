@@ -5,7 +5,7 @@ import java.util.Map;
 
 import accounts.Account;
 import accounts.AccountsManager;
-import customers.MemberManager;
+import members.MemberManager;
 import models.AuthorizationRules;
 import readers.DepositReader;
 import readers.DepositReaderFactory;

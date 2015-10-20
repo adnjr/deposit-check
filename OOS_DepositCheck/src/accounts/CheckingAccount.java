@@ -2,7 +2,7 @@ package accounts;
 
 import java.util.Map;
 
-import customers.Member;
+import members.Member;
 
 public class CheckingAccount extends Account {
     

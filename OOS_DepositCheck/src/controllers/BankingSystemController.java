@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import accounts.AccountsManager;
-import customers.MemberManager;
+import members.MemberManager;
 import models.AuthorizationRules;
 import models.BankingSystem;
 import transactions.TransactionLog;

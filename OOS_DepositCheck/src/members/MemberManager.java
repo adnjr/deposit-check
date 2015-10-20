@@ -1,4 +1,4 @@
-package customers;
+package members;
 
 import java.util.HashMap;
 import java.util.Map;

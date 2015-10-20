@@ -6,7 +6,7 @@ import java.util.Map;
 import com.asprise.ocr.Ocr;
 
 import accounts.Account;
-import customers.Member;
+import members.Member;
 import transactions.Deposit;
 import transactions.Transaction;
 

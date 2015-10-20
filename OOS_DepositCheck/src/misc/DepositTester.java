@@ -1,3 +1,4 @@
+package misc;
 import controllers.BankingSystemController;
 
 public class DepositTester{

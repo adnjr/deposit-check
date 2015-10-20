@@ -3,7 +3,7 @@ package accounts;
 import java.util.HashMap;
 import java.util.Map;
 
-import customers.MemberManager;
+import members.MemberManager;
 
 public class AccountsManager {
 	
